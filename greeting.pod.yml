@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: greeting-pod
+  labels:
+    app: greeting
+    rel: stable
+spec:
+  containers:
+    - name: greeting-service
+      image: alxlys/docker-test:1.0
+      ports:
+        - containerPort: 8080
+      livenessProbe:
+        httpGet:
+          path: /greeting
+          port: 8080
+        initialDelaySeconds: 15
+        timeoutSeconds: 10
+        periodSeconds: 5
+        failureThreshold: 1
+      readinessProbe:
+        httpGet:
+          path: /greeting
+          port: 8080
+        initialDelaySeconds: 15
+        periodSeconds: 5
+        failureThreshold: 1

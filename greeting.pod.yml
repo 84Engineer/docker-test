@@ -8,7 +8,7 @@ metadata:
 spec:
   containers:
     - name: greeting-service
-      image: alxlys/docker-test:1.0
+      image: alxlys/docker-test:2.0
       ports:
         - containerPort: 8080
       livenessProbe:

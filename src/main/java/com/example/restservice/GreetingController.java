@@ -18,6 +18,10 @@ public class GreetingController {
 
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+		if (name.equalsIgnoreCase("die")) {
+			log.warn("Die request came.");
+			System.exit(1);
+		}
 		Greeting greeting = new Greeting(counter.incrementAndGet(), String.format(template, name));
 		log.info("Publishing: " + greeting);
 		return greeting;
